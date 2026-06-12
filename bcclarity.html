@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCClarity — Your choices. Your truth. Your outcomes.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1A3A4A;
+    --navy-light: #2A5068;
+    --sage-pale: #E8F4F0;
+    --sage-deep: #2D6A5A;
+    --amber: #D4845A;
+    --amber-light: #F0C4A0;
+    --off-white: #F7F4EF;
+    --warm-white: #FDFCFA;
+    --text-dark: #1A2E38;
+    --text-mid: #4A6572;
+    --text-light: #7A96A2;
+    --truth-line: #2D6A5A;
+    --border: rgba(26,58,74,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,252,250,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-logo span {
+    color: var(--sage-deep);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-links .demo-link {
+    background: var(--navy);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-links .demo-link:hover { background: var(--navy-light) !important; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* TRUTH LINE MOTIF */
+  .truth-line {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--truth-line);
+    margin-bottom: 1.25rem;
+  }
+
+  /* HERO */
+  #home {
+    padding-top: 10rem;
+    padding-bottom: 7rem;
+    background: var(--off-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #home::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,90,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    max-width: 760px;
+    margin-bottom: 1.75rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--text-mid);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: white;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: #C07348; transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: var(--navy);
+    padding: 0.875rem 2rem;
+    border: 1.5px solid var(--navy);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { background: var(--navy); color: white; }
+
+  .hero-stat-row {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .hero-stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  /* SECTION HEADINGS */
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-intro {
+    font-size: 1.0625rem;
+    color: var(--text-mid);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 3.5rem;
+  }
+
+  /* HOW IT WORKS */
+  #how-it-works {
+    background: var(--warm-white);
+  }
+
+  .capability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .capability-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .capability-card:hover {
+    box-shadow: 0 4px 24px rgba(26,58,74,0.08);
+    transform: translateY(-2px);
+  }
+
+  .capability-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--sage-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .capability-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--sage-deep);
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .capability-card p {
+    font-size: 0.9375rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* THE UNSAID */
+  #our-story {
+    background: var(--navy);
+    color: white;
+  }
+
+  #our-story h2 { color: white; }
+  #our-story .truth-line { background: var(--amber); }
+
+  .pullquote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    line-height: 1.5;
+    color: var(--sage-pale);
+    max-width: 700px;
+    margin: 2.5rem 0;
+    padding-left: 1.75rem;
+    border-left: 3px solid var(--amber);
+    font-style: italic;
+  }
+
+  #our-story p {
+    color: rgba(232,244,240,0.75);
+    max-width: 640px;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .founder-sig {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(232,244,240,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .founder-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .founder-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--sage-pale);
+  }
+
+  .founder-title {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    margin-top: 0.125rem;
+  }
+
+  /* JOIN US */
+  #join-us {
+    background: var(--off-white);
+  }
+
+  .join-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .join-grid { grid-template-columns: 1fr; }
+  }
+
+  .join-form {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    background: var(--warm-white);
+    outline: none;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: var(--sage-deep); }
+
+  .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    background: var(--warm-white);
+    outline: none;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-select:focus { border-color: var(--sage-deep); }
+
+  .form-note {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .join-why h3 { font-size: 1.125rem; margin-bottom: 1rem; }
+
+  .join-why p {
+    color: var(--text-mid);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .join-pledge {
+    background: var(--sage-pale);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .join-pledge p {
+    font-size: 0.875rem;
+    color: var(--sage-deep);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* DEMO / PASSWORD */
+  #demo {
+    background: var(--warm-white);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .demo-gate {
+    max-width: 440px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .demo-gate .truth-line {
+    margin: 0 auto 1.25rem;
+  }
+
+  .demo-gate h2 { text-align: center; margin-bottom: 0.75rem; }
+
+  .demo-gate p {
+    color: var(--text-mid);
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+
+  .demo-form {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: left;
+  }
+
+  .demo-error {
+    background: #FDF0EE;
+    border: 1px solid rgba(212,132,90,0.3);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #A05030;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .demo-content {
+    display: none;
+    padding-top: 2rem;
+  }
+
+  .demo-content.visible { display: block; }
+
+  .demo-workflow {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .demo-header {
+    background: var(--navy);
+    padding: 1.5rem 2rem;
+    color: white;
+  }
+
+  .demo-header h3 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .demo-header p {
+    color: rgba(232,244,240,0.6);
+    font-size: 0.8125rem;
+  }
+
+  .demo-step {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .demo-step:last-child { border-bottom: none; }
+
+  .demo-step-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 0.75rem;
+  }
+
+  .demo-step h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .demo-step p {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .demo-badge {
+    display: inline-block;
+    background: var(--sage-pale);
+    color: var(--sage-deep);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    margin-top: 0.75rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(232,244,240,0.5);
+    padding: 3rem 2rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    line-height: 1.8;
+  }
+
+  footer .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--sage-pale);
+    margin-bottom: 0.75rem;
+  }
+
+  footer a { color: rgba(232,244,240,0.5); text-decoration: underline; }
+
+  /* RESPONSIVE NAV */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    h1 { font-size: 2rem; }
+    .hero-stat-row { gap: 2rem; }
+    section { padding: 4rem 1.25rem; }
+    .join-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">BC<span>Clarity</span></a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#our-story">Our story</a></li>
+    <li><a href="#join-us">Join us</a></li>
+    <li><a href="#demo" class="demo-link">See the demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="container">
+    <p class="hero-eyebrow">Patient-powered information &amp; community</p>
+    <h1>Your treatment journey.<br><em>Your voice. Your choices.</em></h1>
+    <p class="hero-sub">
+      BCClarity is a resource and community for people navigating breast cancer — whether you're in the middle of treatment decisions right now, or years out and still living with their effects.
+    </p>
+    <div class="hero-actions">
+      <a href="#join-us" class="btn-primary">Join the early community</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span class="hero-stat-number">1 in 8</span>
+        <span class="hero-stat-label">Women diagnosed in their lifetime</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">4M+</span>
+        <span class="hero-stat-label">BC survivors in the US today</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">~50%</span>
+        <span class="hero-stat-label">Endocrine therapy discontinuation rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <span class="truth-line"></span>
+    <h2>What BCClarity gives you</h2>
+    <p class="section-intro">
+      Four capabilities built around the reality of what patients actually need — not what the clinical system assumes they need.
+    </p>
+    <div class="capability-grid">
+
+      <div class="capability-card">
+        <div class="capability-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Treatment information</h3>
+        <p>Clear, plain-language information about treatment options and protocols — especially for the months and years after initial diagnosis. We point to trusted sources and tell you what questions to ask.</p>
+      </div>
+
+      <div class="capability-card">
+        <div class="capability-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3>Share your experience</h3>
+        <p>Contribute your own treatment decisions, side effects, and outcomes — anonymously. See what others in similar circumstances have experienced. What you actually did matters as much as what you were prescribed.</p>
+      </div>
+
+      <div class="capability-card">
+        <div class="capability-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Current research</h3>
+        <p>Access to current publications, clinical findings, and emerging research — curated and translated into language that helps you advocate for yourself in the doctor's office.</p>
+      </div>
+
+      <div class="capability-card">
+        <div class="capability-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3>Your personal log</h3>
+        <p>Track your circumstances, decisions, reactions, and side effects over time — privately and anonymously. Your record belongs to you, and it may matter more than you realize years from now.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="our-story">
+  <div class="container">
+    <span class="truth-line"></span>
+    <h2>The conversation that isn't happening</h2>
+
+    <blockquote class="pullquote">
+      "Your doctor assumes you're following every instruction. Most patients aren't — and they're not telling anyone why."
+    </blockquote>
+
+    <p>
+      BCClarity was founded on a simple but uncomfortable truth: the gap between what physicians prescribe and what patients actually do is enormous — and almost entirely invisible to the clinical system.
+    </p>
+    <p>
+      A patient who halves their tamoxifen dose because the joint pain is unbearable. A patient who stops an aromatase inhibitor after six months. A patient who adds testosterone or supplements alongside their standard protocol. These decisions happen every day, and they're rarely disclosed to a physician — not out of deception, but out of fear of judgment, of being seen as non-compliant, of losing the relationship.
+    </p>
+    <p>
+      That silence has a cost. It means the data that would most help future patients — what people actually do, and what happens — never gets collected. BCClarity is building the place where that data can finally exist.
+    </p>
+    <p>
+      We're building this alongside patients, not for them. Every design decision starts with one question: does this serve the person who's struggling with a side effect at 2am, trying to figure out if anyone else has been through this?
+    </p>
+
+    <div class="founder-sig">
+      <div class="founder-avatar">MP</div>
+      <div>
+        <div class="founder-name">Mary Posey</div>
+        <div class="founder-title">Founder &amp; patient voice, BCClarity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN US -->
+<section id="join-us">
+  <div class="container">
+    <span class="truth-line"></span>
+    <h2>Be part of what we're building</h2>
+    <p class="section-intro">
+      BCClarity is in early development. Join our list to follow progress, share feedback, and be among the first to contribute when we open.
+    </p>
+
+    <div class="join-grid">
+      <div class="join-form">
+        <form action="https://formspree.io/f/placeholder" method="POST" onsubmit="handleFormSubmit(event)">
+          <label class="form-label" for="name">Your name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="First name is fine" autocomplete="name">
+
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+
+          <label class="form-label" for="role">I am</label>
+          <select class="form-select" id="role" name="role">
+            <option value="">Select one</option>
+            <option value="patient-active">Currently navigating treatment</option>
+            <option value="patient-survivor">A survivor — treatment is behind me</option>
+            <option value="supporter">A family member or close friend</option>
+            <option value="professional">A healthcare professional</option>
+            <option value="other">Other</option>
+          </select>
+
+          <button type="submit" class="btn-primary" style="width:100%">Keep me informed</button>
+          <p class="form-note">No spam. No selling your address. Unsubscribe any time. We'll reach out when we have something worth sharing.</p>
+        </form>
+        <div id="form-success" style="display:none; padding: 1.5rem; text-align:center;">
+          <p style="color: var(--sage-deep); font-weight: 600; margin-bottom: 0.5rem;">You're on the list.</p>
+          <p style="font-size:0.875rem; color: var(--text-mid);">We'll be in touch when BCClarity opens. Thank you for caring about this.</p>
+        </div>
+      </div>
+
+      <div class="join-why">
+        <h3>Why your contribution matters</h3>
+        <p>
+          Clinical trials capture what physicians prescribe. No one captures what patients actually decide, why, and what happens. That data doesn't exist anywhere — yet.
+        </p>
+        <p>
+          Every person who contributes their experience to BCClarity makes the platform more useful for the next person who's navigating the same decision at midnight, alone, trying to figure out if she's the only one.
+        </p>
+        <p>
+          Supporters are welcome here too. If you're walking alongside someone with breast cancer, your perspective — what helped, what didn't, what you wish you'd known — is part of this story.
+        </p>
+        <div class="join-pledge">
+          <p>Your data belongs to you. BCClarity holds a license to aggregate and analyze it — never to sell it. You can update or remove your contribution at any time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="container" style="width:100%">
+
+    <div id="demo-gate" class="demo-gate">
+      <span class="truth-line"></span>
+      <h2>Platform demo</h2>
+      <p>This is a preview of the BCClarity workflow — currently available to the founding team only.</p>
+      <div class="demo-form">
+        <label class="form-label" for="demo-password">Access password</label>
+        <input class="form-input" type="password" id="demo-password" placeholder="Enter password" style="margin-bottom:0.75rem">
+        <button class="btn-primary" style="width:100%" onclick="checkDemo()">Enter preview</button>
+        <div class="demo-error" id="demo-error">That password isn't right. Try again.</div>
+      </div>
+    </div>
+
+    <div id="demo-content" class="demo-content">
+      <span class="truth-line"></span>
+      <h2>Platform preview — founding team</h2>
+      <p style="color:var(--text-mid); max-width:600px; margin-bottom:0.5rem;">
+        This is a demonstration of intent — showing the shape of the BCClarity experience before the full platform is built.
+      </p>
+
+      <div class="demo-workflow">
+        <div class="demo-header">
+          <h3>Your treatment journey — step by step</h3>
+          <p>Demonstration workflow · Not yet collecting real data</p>
+        </div>
+
+        <div class="demo-step">
+          <div class="demo-step-label">Step 1 of 5</div>
+          <h4>Diagnosis profile</h4>
+          <p>Tell us about your diagnosis — cancer type, stage, receptor status. All molecular and genomic fields are optional. You can fill them in now or come back when you have the information. BCClarity meets you where you are.</p>
+          <span class="demo-badge">Coming soon</span>
+        </div>
+
+        <div class="demo-step">
+          <div class="demo-step-label">Step 2 of 5</div>
+          <h4>Surgical decisions</h4>
+          <p>What were you offered? What did you choose, and why? What do you wish you'd known beforehand? This is where your experience — including the decision you made that isn't in any trial — starts to matter.</p>
+          <span class="demo-badge">Coming soon</span>
+        </div>
+
+        <div class="demo-step">
+          <div class="demo-step-label">Step 3 of 5</div>
+          <h4>Adjuvant therapy</h4>
+          <p>Radiation, chemotherapy — what was your experience? What did you choose, modify, or decline? The reasons patients make these decisions are rarely captured anywhere. Here they are.</p>
+          <span class="demo-badge">Coming soon</span>
+        </div>
+
+        <div class="demo-step">
+          <div class="demo-step-label">Step 4 of 5</div>
+          <h4>Endocrine therapy decisions</h4>
+          <p>Tamoxifen, aromatase inhibitors — what were you offered, what did you take, what did you modify or stop? Side effect burden tracked over time. What you use alongside or instead. This is the data that doesn't exist anywhere else.</p>
+          <span class="demo-badge">Coming soon</span>
+        </div>
+
+        <div class="demo-step">
+          <div class="demo-step-label">Step 5 of 5</div>
+          <h4>Quality of life &amp; outcomes</h4>
+          <p>Your quality of life over time. New diagnoses. Recurrence. What you wish you'd known. What you'd decide differently. Updated annually — because this isn't a moment, it's a life.</p>
+          <span class="demo-badge">Coming soon</span>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; padding:1.5rem; background: var(--sage-pale); border-radius:10px; max-width:600px;">
+        <p style="font-size:0.875rem; color:var(--sage-deep); font-weight:500; margin-bottom:0.5rem;">Founding team note</p>
+        <p style="font-size:0.875rem; color:var(--text-mid); line-height:1.7;">Survey instrument design begins with the biostatistician before any UI or build work proceeds. This demo shows structure and intent — question wording, response options, and interaction design will be finalized in that process.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">BCClarity</div>
+  <p>Building the patient record that doesn't exist yet.</p>
+  <p style="margin-top:1rem;">© 2026 BCClarity · Founding team internal · <a href="mailto:hello@bcclarity.org">hello@bcclarity.org</a></p>
+</footer>
+
+<script>
+  function checkDemo() {
+    const pw = document.getElementById('demo-password').value;
+    const err = document.getElementById('demo-error');
+    if (pw === 'bcclarity2026') {
+      document.getElementById('demo-gate').style.display = 'none';
+      const content = document.getElementById('demo-content');
+      content.classList.add('visible');
+      content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      err.style.display = 'block';
+      document.getElementById('demo-password').focus();
+    }
+  }
+
+  document.getElementById('demo-password').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkDemo();
+  });
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    document.querySelector('.join-form form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
